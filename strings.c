@@ -269,3 +269,34 @@ int strcmp_ign_case(char *s1, char *s2)
     }
 
 }
+
+char *distinct(char *s)
+{
+    int len = 0;
+    while(s[len] != '\0')
+    {
+        len++;
+    }
+
+    char *string = malloc(sizeof(char)*(len+1));
+    int string_len = 0;
+    for(int i = 0; i < len; i++)
+    {
+        char duplicate = 0;
+        for(int j = 0; j < string_len; j++)
+        {
+            if(s[i] == string[j])
+            {
+                duplicate = 1;
+            }
+        }
+        if(!duplicate)
+        {
+            string[string_len++] = s[i];
+        }
+    }
+    string[string_len++] = '\0';
+
+    string = realloc(string, sizeof(char)*(string_len));
+    return string;
+}

@@ -2,8 +2,6 @@
 // Created by bouch on 28/08/15.
 //
 
-#include <stdio.h>
-
 struct array{
     int* list;
     int len;
@@ -105,14 +103,4 @@ void _merge_sort(int list[], int low, int high)
 void merge_sort(struct array thanger)
 {
     _merge_sort(thanger.list, 0, thanger.len);
-}
-
-int main()
-{
-    int values[5] = {62, 23, 56, 63, 23};
-    struct array wee = {.list = values, .len = 5};
-    printf("initial: ");
-    print_array(wee.list, wee.len);
-    bubble_sort(wee);
-    print_array(wee.list, wee.len);
 }

@@ -7,9 +7,8 @@
 
 int main()
 {
-    char str1[] = "a";
-    char str2[] = "a";
-    printf("%d\n", strcmp_ign_case(str1, str2));
+    char str[] = "There's always money in the banana stand.";
+    printf("%s\n", distinct(str));
 
     return 0;
 }
