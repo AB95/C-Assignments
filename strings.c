@@ -218,7 +218,7 @@ int strcmp_ign_case(char *s1, char *s2)
         if(s1[i] >= 'A' && s1[i] <= 'Z')
         {
             //Makes the letter lowercase
-            lower_s1[i] = s1[i] + 22;
+            lower_s1[i] = s1[i] + 32;
         }
         else
         {
@@ -232,7 +232,7 @@ int strcmp_ign_case(char *s1, char *s2)
         if(s2[i] >= 'A' && s2[i] <= 'Z')
         {
             //Makes the letter lowercase
-            lower_s2[i] = s2[i] + 22;
+            lower_s2[i] = s2[i] + 32;
         }
         else
         {
@@ -245,15 +245,22 @@ int strcmp_ign_case(char *s1, char *s2)
     {
         if(lower_s1[i] < lower_s2[j])
         {
+            free(lower_s1);
+            free(lower_s2);
             return -1;
         }
         else if(lower_s2[j] < lower_s1[i])
         {
+            free(lower_s1);
+            free(lower_s2);
             return 1;
         }
         i++;
         j++;
     }
+
+    free(lower_s1);
+    free(lower_s2);
 
     if (len1 < len2)
     {
@@ -335,4 +342,65 @@ char *pad(char *s, int d)
     string[new_len] = '\0';
 
     return string;
+}
+
+int begins_with_ignore_case(char *s, char *pre)
+{
+    int len_s = 0;
+    while(s[len_s] != '\0')
+    {
+        len_s++;
+    }
+
+    int len_pre = 0;
+    while(pre[len_pre] != '\0')
+    {
+        len_pre++;
+    }
+
+    if (len_pre > len_s)
+    {
+        return 0;
+    }
+
+    char *lower_s = malloc(sizeof(char)*(len_s+1));
+    for(int i = 0; i < len_s; i++)
+    {
+        if(s[i] >= 'A' && s[i] <= 'Z')
+        {
+            //Makes the letter lowercase
+            lower_s[i] = s[i] + 32;
+        }
+        else
+        {
+            lower_s[i] = s[i];
+        }
+    }
+
+    char *lower_pre = malloc(sizeof(char)*(len_pre+1));
+    for(int i = 0; i < len_pre; i++)
+    {
+        if(pre[i] >= 'A' && pre[i] <= 'Z')
+        {
+            //Makes the letter lowercase
+            lower_pre[i] = pre[i] + 32;
+        }
+        else
+        {
+            lower_pre[i] = pre[i];
+        }
+    }
+
+    for(int i = 0; i < len_pre; i++)
+    {
+        if(lower_s[i] != lower_pre[i])
+        {
+            free(lower_pre);
+            free(lower_s);
+            return 0;
+        }
+    }
+    free(lower_pre);
+    free(lower_s);
+    return 1;
 }

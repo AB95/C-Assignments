@@ -16,5 +16,6 @@ char *tab_to_space(char *s, int num_spaces);
 int strcmp_ign_case(char *s1, char *s2);
 char *distinct(char *s);
 char *pad(char *s, int d);
+int begins_with_ignore_case(char *s, char *pre);
 
 #endif //C_STRINGS_H
