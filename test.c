@@ -7,9 +7,7 @@
 
 int main()
 {
-    char str1[] = "a";
-    char str2[] = "c";
-    printf("%s\n", intersect(str1, str2));
+    printf("%s\n", replace("Fiore X", "X", "sucks"));
 
     return 0;
 }

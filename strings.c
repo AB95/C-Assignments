@@ -478,3 +478,68 @@ char *intersect(char *s1, char *s2)
     string3 = realloc(string3, sizeof(char) * len3);
     return string3;
 }
+
+char *replace(char *s, char *pat, char *rep)
+{
+    int len_s = length(s);
+    int len_pat = length(pat);
+    int len_rep = length(rep);
+
+    int num_pat = 0;
+    int full_pat;
+    for (int i = 0; i <= len_s - len_pat; i++)
+    {
+        if (s[i] == pat[0])
+        {
+            full_pat = 1;
+            for (int j = 0; j < len_pat; j++)
+            {
+                if (s[i + j] != pat[j])
+                {
+                    full_pat = 0;
+                }
+            }
+            if (full_pat)
+            {
+                num_pat++;
+            }
+        }
+    }
+
+    int len_new = len_s - (len_pat * num_pat) + (len_rep * num_pat);
+    char *string = malloc(sizeof(char) * (len_new + 1));
+
+    int index_string = 0;
+    for (int i = 0; i <= len_s - len_pat; i++)
+    {
+        if (s[i] == pat[0])
+        {
+            full_pat = 1;
+            for (int j = 0; j < len_pat; j++)
+            {
+                if (s[i + j] != pat[j])
+                {
+                    full_pat = 0;
+                }
+            }
+            if (full_pat)
+            {
+                for (int j = 0; j < len_rep; j++)
+                {
+                    string[index_string++] = rep[j];
+                }
+            }
+            else
+            {
+                string[index_string++] = s[i];
+            }
+        }
+        else
+        {
+            string[index_string++] = s[i];
+        }
+    }
+
+    string[index_string] = '\0';
+    return string;
+}
