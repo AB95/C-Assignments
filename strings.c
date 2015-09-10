@@ -300,3 +300,39 @@ char *distinct(char *s)
     string = realloc(string, sizeof(char)*(string_len));
     return string;
 }
+
+char *pad(char *s, int d)
+{
+    if(s == NULL)
+    {
+        return NULL;
+    }
+
+    int len = 0;
+    while(s[len] != '\0')
+    {
+        len++;
+    }
+
+    int new_len = len;
+    while(new_len%d != 0)
+    {
+        new_len++;
+    }
+
+    char *string = malloc(sizeof(char) * (new_len+1));
+    for(int i = 0; i < new_len; i++)
+    {
+        if(i < len)
+        {
+            string[i] = s[i];
+        }
+        else
+        {
+            string[i] = ' ';
+        }
+    }
+    string[new_len] = '\0';
+
+    return string;
+}

@@ -7,8 +7,8 @@
 
 int main()
 {
-    char str[] = "There's always money in the banana stand.";
-    printf("%s\n", distinct(str));
+    char str[] = "abcd e";
+    printf("%sd\n", pad(str, 6));
 
     return 0;
 }
