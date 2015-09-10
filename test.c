@@ -7,8 +7,9 @@
 
 int main()
 {
-    char string[] = "abc\tdff\tff\t";
-    printf("%sd\n", tab_to_space(string, 1));
+    char str1[] = "a";
+    char str2[] = "a";
+    printf("%d\n", strcmp_ign_case(str1, str2));
 
     return 0;
 }

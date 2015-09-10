@@ -197,3 +197,75 @@ char *tab_to_space(char *s, int num_spaces)
     copy[i] = '\0';
     return copy;
 }
+
+int strcmp_ign_case(char *s1, char *s2)
+{
+    int len1 = 0;
+    while(s1[len1] != '\0')
+    {
+        len1++;
+    }
+
+    int len2 = 0;
+    while(s2[len2] != '\0')
+    {
+        len2++;
+    }
+
+    char *lower_s1 = malloc(sizeof(char)*(len1+1));
+    for(int i = 0; i < len1; i++)
+    {
+        if(s1[i] >= 'A' && s1[i] <= 'Z')
+        {
+            //Makes the letter lowercase
+            lower_s1[i] = s1[i] + 22;
+        }
+        else
+        {
+            lower_s1[i] = s1[i];
+        }
+    }
+
+    char *lower_s2 = malloc(sizeof(char)*(len1+1));
+    for(int i = 0; i < len2; i++)
+    {
+        if(s2[i] >= 'A' && s2[i] <= 'Z')
+        {
+            //Makes the letter lowercase
+            lower_s2[i] = s2[i] + 22;
+        }
+        else
+        {
+            lower_s2[i] = s2[i];
+        }
+    }
+
+    int i = 0, j = 0;
+    while(i < len1 && j < len2)
+    {
+        if(lower_s1[i] < lower_s2[j])
+        {
+            return -1;
+        }
+        else if(lower_s2[j] < lower_s1[i])
+        {
+            return 1;
+        }
+        i++;
+        j++;
+    }
+
+    if (len1 < len2)
+    {
+        return -1;
+    }
+    else if (len2 < len1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+
+}
