@@ -7,9 +7,9 @@
 
 int main()
 {
-    char str1[] = "buggy";
-    char str2[] = "aguert";
-    printf("%s\n", remove_chars(str1, str2));
+    char str1[] = "a";
+    char str2[] = "c";
+    printf("%s\n", intersect(str1, str2));
 
     return 0;
 }

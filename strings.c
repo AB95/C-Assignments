@@ -412,3 +412,69 @@ char *remove_chars(char *s1, char *s2)
     s3[len3++] = '\0';
     return s3;
 }
+
+char *repeat(char *s, int x, char sep)
+{
+    if (s == NULL)
+    {
+        return NULL;
+    }
+
+    int len_s = length(s);
+    int new_len = (len_s + 1) * x;
+
+    char *string = malloc(sizeof(char) * new_len + 1);
+    int len_string = 0;
+    for (int i = 0; i < x - 1; i++)
+    {
+        for (int j = 0; j < len_s; j++)
+        {
+            string[len_string++] = s[j];
+        }
+        string[len_string++] = sep;
+    }
+    for (int j = 0; j < len_s; j++)
+    {
+        string[len_string++] = s[j];
+    }
+    string[len_string++] = '\0';
+    return string;
+}
+
+char *intersect(char *s1, char *s2)
+{
+    char *string1 = distinct(s1);
+    char *string2 = distinct(s2);
+
+    int len1 = length(string1);
+    int len2 = length(string2);
+
+    char *string3 = malloc(sizeof(char) * (len1));
+
+    int len3 = 0;
+    int duplicate = 0;
+    for (int i = 0; i < len1; i++)
+    {
+        duplicate = 0;
+        for (int j = 0; j < len2; j++)
+        {
+            if (string1[i] == string2[j])
+            {
+                duplicate = 1;
+            }
+        }
+        if (duplicate)
+        {
+            string3[len3++] = string1[i];
+        }
+    }
+
+    if (len3 == 0)
+    {
+        return NULL;
+    }
+
+    string3[len3++] = '\0';
+    string3 = realloc(string3, sizeof(char) * len3);
+    return string3;
+}
