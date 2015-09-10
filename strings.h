@@ -5,6 +5,8 @@
 #ifndef C_STRINGS_H
 #define C_STRINGS_H
 
+int length(char *s);
+void lower(char *old, char *new);
 char is_blank(char *s);
 void lstrip(char *s);
 void rstrip(char *s);
@@ -17,5 +19,6 @@ int strcmp_ign_case(char *s1, char *s2);
 char *distinct(char *s);
 char *pad(char *s, int d);
 int begins_with_ignore_case(char *s, char *pre);
+int ends_with_ignore_case(char *s, char *suff);
 
 #endif //C_STRINGS_H

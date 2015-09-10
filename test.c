@@ -8,8 +8,8 @@
 int main()
 {
     char str[] = "abcd e";
-    char pre[] = "abcd E";
-    printf("%d\n", begins_with_ignore_case(str, pre));
+    char pre[] = "";
+    printf("%d\n", ends_with_ignore_case(str, pre));
 
     return 0;
 }

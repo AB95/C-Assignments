@@ -6,6 +6,34 @@
 #include <stdlib.h>
 #include "strings.h"
 
+int length(char *s)
+{
+    int len = 0;
+    while(s[len] != '\0')
+    {
+        len++;
+    }
+    return len;
+}
+
+void lower(char *old, char *new)
+{
+    int len_old = length(old);
+    for(int i = 0; i < len_old; i++)
+    {
+        if(old[i] >= 'A' && old[i] <= 'Z')
+        {
+            //Makes the letter lowercase
+            new[i] = old[i] + 32;
+        }
+        else
+        {
+            new[i] = old[i];
+        }
+    }
+    new[len_old-1] = '\0';
+}
+
 char is_blank(char *s)
 {
     int i = 0;
@@ -65,17 +93,9 @@ void strip(char *s)
 
 int index_of(char *h, char *n)
 {
-    int len_h = 0;
-    while(h[len_h] != '\0')
-    {
-        len_h++;
-    }
+    int len_h = length(h);
 
-    int len_n = 0;
-    while(n[len_n] != '\0')
-    {
-        len_n++;
-    }
+    int len_n = length(n);
 
     for(int i = 0; i < len_h; i++)
     {
@@ -96,17 +116,9 @@ int index_of(char *h, char *n)
 
 char *address_of(char *h, char *n)
 {
-    int len_h = 0;
-    while(h[len_h] != '\0')
-    {
-        len_h++;
-    }
+    int len_h = length(h);
 
-    int len_n = 0;
-    while(n[len_n] != '\0')
-    {
-        len_n++;
-    }
+    int len_n = length(n);
 
     for(int i = 0; i < len_h; i++)
     {
@@ -127,17 +139,9 @@ char *address_of(char *h, char *n)
 
 int diff(char *s1, char *s2)
 {
-    int len1 = 0;
-    while(s1[len1] != '\0')
-    {
-        len1++;
-    }
+    int len1 = length(s1);
 
-    int len2 = 0;
-    while(s2[len2] != '\0')
-    {
-        len2++;
-    }
+    int len2 = length(s2);
 
     int i=0, j=0, dif=0;
     while(i < len1 && j < len2)
@@ -200,45 +204,15 @@ char *tab_to_space(char *s, int num_spaces)
 
 int strcmp_ign_case(char *s1, char *s2)
 {
-    int len1 = 0;
-    while(s1[len1] != '\0')
-    {
-        len1++;
-    }
+    int len1 = length(s1);
 
-    int len2 = 0;
-    while(s2[len2] != '\0')
-    {
-        len2++;
-    }
+    int len2 = length(s2);
 
     char *lower_s1 = malloc(sizeof(char)*(len1+1));
-    for(int i = 0; i < len1; i++)
-    {
-        if(s1[i] >= 'A' && s1[i] <= 'Z')
-        {
-            //Makes the letter lowercase
-            lower_s1[i] = s1[i] + 32;
-        }
-        else
-        {
-            lower_s1[i] = s1[i];
-        }
-    }
+    lower(s1, lower_s1);
 
     char *lower_s2 = malloc(sizeof(char)*(len1+1));
-    for(int i = 0; i < len2; i++)
-    {
-        if(s2[i] >= 'A' && s2[i] <= 'Z')
-        {
-            //Makes the letter lowercase
-            lower_s2[i] = s2[i] + 32;
-        }
-        else
-        {
-            lower_s2[i] = s2[i];
-        }
-    }
+    lower(s2, lower_s2);
 
     int i = 0, j = 0;
     while(i < len1 && j < len2)
@@ -279,11 +253,7 @@ int strcmp_ign_case(char *s1, char *s2)
 
 char *distinct(char *s)
 {
-    int len = 0;
-    while(s[len] != '\0')
-    {
-        len++;
-    }
+    int len = length(s);
 
     char *string = malloc(sizeof(char)*(len+1));
     int string_len = 0;
@@ -315,11 +285,7 @@ char *pad(char *s, int d)
         return NULL;
     }
 
-    int len = 0;
-    while(s[len] != '\0')
-    {
-        len++;
-    }
+    int len = length(s);
 
     int new_len = len;
     while(new_len%d != 0)
@@ -346,50 +312,20 @@ char *pad(char *s, int d)
 
 int begins_with_ignore_case(char *s, char *pre)
 {
-    int len_s = 0;
-    while(s[len_s] != '\0')
-    {
-        len_s++;
-    }
+    int len_s = length(s);
 
-    int len_pre = 0;
-    while(pre[len_pre] != '\0')
-    {
-        len_pre++;
-    }
+    int len_pre = length(pre);
 
-    if (len_pre > len_s)
+    if (len_pre > len_s || len_pre == 0)
     {
         return 0;
     }
 
     char *lower_s = malloc(sizeof(char)*(len_s+1));
-    for(int i = 0; i < len_s; i++)
-    {
-        if(s[i] >= 'A' && s[i] <= 'Z')
-        {
-            //Makes the letter lowercase
-            lower_s[i] = s[i] + 32;
-        }
-        else
-        {
-            lower_s[i] = s[i];
-        }
-    }
+    lower(s, lower_s);
 
     char *lower_pre = malloc(sizeof(char)*(len_pre+1));
-    for(int i = 0; i < len_pre; i++)
-    {
-        if(pre[i] >= 'A' && pre[i] <= 'Z')
-        {
-            //Makes the letter lowercase
-            lower_pre[i] = pre[i] + 32;
-        }
-        else
-        {
-            lower_pre[i] = pre[i];
-        }
-    }
+    lower(pre, lower_pre);
 
     for(int i = 0; i < len_pre; i++)
     {
@@ -404,3 +340,34 @@ int begins_with_ignore_case(char *s, char *pre)
     free(lower_s);
     return 1;
 }
+
+int ends_with_ignore_case(char *s, char *suff)
+{
+    int len_s = length(s);
+    int len_suff = length(suff);
+
+    if(len_suff > len_s || len_suff == 0)
+    {
+        return 0;
+    }
+
+    char *lower_s = malloc(sizeof(char)*(len_s+1));
+    lower(s, lower_s);
+
+    char *lower_suff = malloc(sizeof(char)*(len_suff+1));
+    lower(suff, lower_suff);
+
+    for(int i = 0; i < len_suff; i++)
+    {
+        if(lower_s[len_s-(len_suff-i)] != lower_suff[i])
+        {
+            free(lower_s);
+            free(lower_suff);
+            return 0;
+        }
+    }
+    free(lower_s);
+    free(lower_suff);
+    return 1;
+}
+
