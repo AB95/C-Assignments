@@ -7,9 +7,9 @@
 
 int main()
 {
-    char str[] = "abcd e";
-    char pre[] = "";
-    printf("%d\n", ends_with_ignore_case(str, pre));
+    char str1[] = "buggy";
+    char str2[] = "aguert";
+    printf("%s\n", remove_chars(str1, str2));
 
     return 0;
 }

@@ -20,5 +20,7 @@ char *distinct(char *s);
 char *pad(char *s, int d);
 int begins_with_ignore_case(char *s, char *pre);
 int ends_with_ignore_case(char *s, char *suff);
+char *de_tab(char *s, int num_spaces);
+char *remove_chars(char *s1, char *s2);
 
 #endif //C_STRINGS_H
