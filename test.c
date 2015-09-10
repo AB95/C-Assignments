@@ -3,11 +3,17 @@
 //
 
 #include <stdio.h>
-#include "strings.h"
+#include "crypto.h"
 
 int main()
 {
-    printf("%s\n", replace("Fiore X", "X", "sucks"));
+    char **strings = init_dict();
+    int i = 0;
+    while(strings[i] != NULL)
+    {
+        printf("%s %d\n", strings[i], i);
+        i++;
+    }
 
     return 0;
 }

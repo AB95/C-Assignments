@@ -543,3 +543,45 @@ char *replace(char *s, char *pat, char *rep)
     string[index_string] = '\0';
     return string;
 }
+
+char **chop(char *s, char c)
+{
+    int len_s = length(s);
+
+    int num_strings = 2;
+    for(int i = 0; i < len_s; i++)
+    {
+        if (s[i] == c)
+        {
+            num_strings++;
+            while(s[i] == c)
+            {
+                i++;
+            }
+        }
+    }
+
+    char **strings = malloc(sizeof(char *)*(num_strings+1));
+    int start;
+    int len_strings = 0;
+    for(int i = 0; i < len_s; i++)
+    {
+        if(s[i] != c)
+        {
+            start = i;
+            while(s[i] != c && s[i] != '\0')
+            {
+                i++;
+            }
+            if (s[i] == c)
+            {
+                s[i] = '\0';
+            }
+            strings[len_strings++] = &s[start];
+        }
+    }
+    strings[len_strings] = NULL;
+
+    return strings;
+
+}

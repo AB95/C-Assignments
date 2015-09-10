@@ -25,5 +25,6 @@ char *remove_chars(char *s1, char *s2);
 char *repeat(char *s, int x, char sep);
 char *intersect(char *s1, char *s2);
 char *replace(char *s, char *pat, char *rep);
+char **chop(char *s, char c);
 
 #endif //C_STRINGS_H
