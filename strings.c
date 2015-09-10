@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "strings.h"
 
 char is_blank(char *s)
@@ -176,7 +175,7 @@ char *tab_to_space(char *s, int num_spaces)
     }
 
     int new_len = (len-tabs) + (tabs*num_spaces);
-    char copy[new_len+1];
+    char *copy = malloc(sizeof(char)*(new_len+1));
 
     int i = 0;
     for(int j = 0; j < len; j++)

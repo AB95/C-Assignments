@@ -7,8 +7,8 @@
 
 int main()
 {
-    char string[] = "abcdffff";
-    printf("%s\n", tab_to_space(string, 2));
+    char string[] = "abc\tdff\tff\t";
+    printf("%sd\n", tab_to_space(string, 1));
 
     return 0;
 }
