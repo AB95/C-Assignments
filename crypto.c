@@ -36,25 +36,19 @@ char *shift(char *s, int n)
 char **init_dict()
 {
     FILE *dict = fopen("/home/bouch/ClionProjects/C/dict.txt", "r");
-    char **strings = malloc(sizeof(char *));
+    char **strings = malloc(sizeof(char *) * 128);
     int len_strings = 0;
 
     strings[len_strings] = malloc(sizeof(char) * 30);
-    fscanf(dict, "%s", strings[len_strings++]);
 
-    while (1)
+    while (fscanf(dict, "%s", strings[len_strings++]) != EOF)
     {
         strings = realloc(strings, sizeof(char *) * (len_strings + 1));
         strings[len_strings] = malloc(sizeof(char) * 30);
-        fscanf(dict, "%s", strings[len_strings++]);
         printf("%s, %d\n", strings[len_strings - 1], len_strings);
-
-        if (strings[len_strings - 1][0] == '\0')
-        {
-            strings[len_strings - 1] = NULL;
-            break;
-        }
     }
+    strings[--len_strings] = NULL;
+    fclose(dict);
 
     return strings;
 }
