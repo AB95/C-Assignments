@@ -13,11 +13,7 @@ char shift_char(char s, int n)
     char final;
     if (isalpha(s))
     {
-        final = tolower(s) + n;
-        if (!isalpha(final))
-        {
-            final -= 26;
-        }
+        final = ((tolower(s) + n) % 97) % 26 + 'a';
     }
     else
     {
