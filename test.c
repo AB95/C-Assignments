@@ -2,9 +2,10 @@
 // Created by bouch on 01/09/15.
 //
 
+#include "crypto.h"
+
 int main()
 {
-//    char *string = "ZZZ";
-//    printf("%d\n", is_word(string));
-//    return 0;
+    shift_file(find_shift());
+    return 0;
 }

@@ -8,12 +8,17 @@
 
 int length(char *s)
 {
+    if(s == NULL)
+    {
+        return 0;
+    }
+
     int len = 0;
     while (s[len] != '\0')
     {
         len++;
     }
-    return len;
+    return len+1;
 }
 
 void lower(char *old, char *new)
