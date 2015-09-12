@@ -6,7 +6,7 @@
 #define C_CRYPTO_H
 
 char *shift(char *s, int n);
-int is_word(char *s);
+int is_word(char *s, char **list);
 char **init_dict();
 
 #endif //C_CRYPTO_H

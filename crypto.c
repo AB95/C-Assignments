@@ -36,16 +36,30 @@ char *shift(char *s, int n)
 char **init_dict()
 {
     FILE *dict = fopen("/home/bouch/ClionProjects/C/dict.txt", "r");
-    char **strings = malloc(sizeof(char *) * 128);
+//    char **strings = malloc(sizeof(char *));
+
+    char c;
+    int lengt = 0;
+    while ((c = getc(dict)) != EOF)
+    {
+        if (c == '\n')
+        {
+            lengt++;
+        }
+    }
+    fseek(dict, 0, SEEK_SET);
+
+    char **strings = malloc(sizeof(char *) * lengt);
     int len_strings = 0;
 
-    strings[len_strings] = malloc(sizeof(char) * 30);
-
-    while (fscanf(dict, "%s", strings[len_strings++]) != EOF)
+    for (int i = 0; i < lengt; i++)
     {
-        strings = realloc(strings, sizeof(char *) * (len_strings + 1));
-        strings[len_strings] = malloc(sizeof(char) * 30);
-        printf("%s, %d\n", strings[len_strings - 1], len_strings);
+        strings[i] = malloc(sizeof(char) * 30);
+    }
+
+    while (len_strings <= lengt)
+    {
+        fscanf(dict, "%s", strings[len_strings++]);
     }
     strings[--len_strings] = NULL;
     fclose(dict);
@@ -54,9 +68,8 @@ char **init_dict()
 }
 
 //change to better search
-int is_word(char *s)
+int is_word(char *s, char **list)
 {
-    char **list = init_dict();
     if (!s || length(s) == 0)
     {
         return 0;
@@ -68,7 +81,7 @@ int is_word(char *s)
         index++;
     }
 
-    while (strcmp_ign_case(list[index], s) != 0 && list[index] != NULL)
+    while (list[index] != NULL && strcmp_ign_case(list[index], s) != 0)
     {
         index++;
     }
@@ -79,3 +92,4 @@ int is_word(char *s)
     }
     return 0;
 }
+
