@@ -2,6 +2,9 @@
 // Created by bouch on 12/09/15.
 //
 
+#include "linked_list.h"
+#include <stdlib.h>
+
 void add_to_start(struct linked_list *list, void *info)
 {
     node *new = malloc(sizeof(node));
@@ -17,6 +20,7 @@ void add_to_start(struct linked_list *list, void *info)
         list->head = new;
         new->next = temp;
     }
+    list->size++;
 }
 
 void add_to_end(struct linked_list *list, void *info)
@@ -34,6 +38,7 @@ void add_to_end(struct linked_list *list, void *info)
     {
         last->next = new;
     }
+    list->size++;
 }
 
 node *get_first(struct linked_list *list)
@@ -49,4 +54,26 @@ node *get_last(struct linked_list *list)
         temp = temp->next;
     }
     return temp;
+}
+
+char is_empty(struct linked_list *list)
+{
+    return list->head == NULL;
+}
+
+node *get(struct linked_list *list, int index)
+{
+    if (index > list->size - 1)
+    {
+        return NULL;
+    }
+    else
+    {
+        node *temp = list->head;
+        for (int i = 0; i < index; i++)
+        {
+            temp = temp->next;
+        }
+        return temp;
+    }
 }

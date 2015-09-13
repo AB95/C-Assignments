@@ -15,10 +15,13 @@ struct node
 
 struct linked_list{
     node *head;
+    int size;
 };
 
-void add_to_start(struct linked_list *list, void *data);
-void add_to_end(struct linked_list *list, void *data);
+char is_empty(struct linked_list *list);
+node *get(struct linked_list *list, int index);
+void add_to_start(struct linked_list *list, void *info);
+void add_to_end(struct linked_list *list, void *info);
 node *get_first(struct linked_list *list);
 node *get_last(struct linked_list *list);
 
